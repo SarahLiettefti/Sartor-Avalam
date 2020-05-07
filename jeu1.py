@@ -116,4 +116,3 @@ def themove(body):
     m = hasard(body)
     moves = turningoodform(m)
     return moves
-

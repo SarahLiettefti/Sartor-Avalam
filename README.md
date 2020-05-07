@@ -3,20 +3,25 @@ Réalisé par Victor Janssens (18322) et Sarah Liettefti Lens (18253) pour le pr
 Mai 2020
 Voir règles du projet : https://github.com/ECAM-Brussels/AIGameRunner/blob/master/avalam.md
 ## Bibliothèque utilisé
-- json pour envoyer l'inscription
-- socket pour communiquer avec le server
-- sys pour utiliser le terminal
+- json : pour envoyer l'inscription
+- socket : pour communiquer avec le server
+- sys : pour utiliser le terminal
 - cherypy, cherrypy.lib.static
+- random : pour choisir un coup dans une liste
+
 
 ## Lancement de l'ia contre une autre ia:
 
-### Inscription au server
+### Inscription au server et démarrage du jeu
+
+
+#### Fonctionnement : 
 Le fichier simple.py permet l'inscription, il envoie un message TCP en JSON au porte 3001 sous cette forme :
 
 ```json
 {
 	"matricules": ["18253", "18322"],
-	"port": port,
+	"port": port ,
 	"name": "Sartor"
 }
 ```
@@ -45,25 +50,14 @@ La route `coup` va regarder pour chaque case dans `casesoccupes` si un déplacem
 Classé de la moins avantageuse à la plus avantageuse :
 
 | Listes | Objectif | Commentaire |
-|--------|:--------:|------------:|
-| test | test | test |
-
-| Listes | Objectif | Commentaire |
 |----------|:-------------:|------:|
 | `coups` | liste de tous les déplacements possibles | elle est utilisée si toutes les autres listes sont vide, elle permet de ne pas renvoyer un déplacement libre si il ne trouve pas de bon coup |
-|----------|:-------------:|------:|
 | `ajout` | empile deux tours de notre couleurs | stratégiquement ce n'est pas un coup prioritaire car si une tour adverse peut nous attaquer au coup suivant, c'est qu'on peut également l'attaquer et dans ce cas le coup sera joué par `ecrase` |
-|----------|:-------------:|------:|
 | `embete` | déplace une tour de l'adversaire sur ses couleurs | réduit son nombre de tour |
-|----------|:-------------:|------:|
 | `complettheybythey` | déplace une tour de l'adversaire sur ses couleurs et créer une tour de 5 | les pions ne sont donc plus jouables et ne valent que pour un point |
-|----------|:-------------:|------:|
 | `ecrase` | déplace une de nos tours sur l'adversaire|remplacé par dans l'ordre: `ecrase4`, `ecrase3` et `ecrase2`|
-|----------|:-------------:|------:|
 | `ecrase4`, `ecrase3` et `ecrase2` | dérivé de la liste `ecrase`, le chiffre correspond à la hauteur de la tour final créé sur la tour adverse| il est plus avantageux de d'abord créer plein de petites tours de 2 avant des tours de 4 |
-|----------|:-------------:|------:|
 | `complettheybyus` | déplace une de nos tours sur l'adversaire et créons une tour de 5 | nous sécurise un point |
-|----------|:-------------:|------:|
 | `ensembleseul` | liste de déplacements dont le pion d'origine nous appartient et le pion destination non dont les deux n'ont pas d'autres choix de déplacement | nous sécurise un point | 
 
 

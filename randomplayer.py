@@ -1,6 +1,7 @@
 import cherrypy
 import sys
 from jeurandom import themove
+from simple import sub
 
 class Server:
     @cherrypy.expose
@@ -31,6 +32,6 @@ if __name__ == "__main__":
         port=int(sys.argv[1])
     else:
         port=8002
-
+    sub("11112","33332",port,"random")
     cherrypy.config.update({'server.socket_host': '0.0.0.0', 'server.socket_port': port})
     cherrypy.quickstart(Server())

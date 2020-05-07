@@ -1,6 +1,7 @@
 import cherrypy
 import sys
 from jeu1 import themove
+from simple import sub
 
 class Server:
     @cherrypy.expose
@@ -27,6 +28,7 @@ if __name__ == "__main__":
         port=int(sys.argv[1])
     else:
         port=8001
+    sub("18253","18322",port,"Sartor")
 
     cherrypy.config.update({'server.socket_host': '0.0.0.0', 'server.socket_port': port})
     cherrypy.quickstart(Server())

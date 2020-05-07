@@ -31,7 +31,7 @@ def coup(body):
                     if to in casesoccupes:
                         if ((len(game[de[0]][de[1]]))+(len(game[to[0]][to[1]])))<=5:  
                             findallcoup(game,de,to,coups)
-    print(coups)
+    #print(coups)
     return coups #renvoie une liste à la fin
 
 def turningoodform(m):#transforme un [[0,3],[0,4]] en ce quil faut
