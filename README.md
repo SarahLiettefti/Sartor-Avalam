@@ -45,6 +45,10 @@ La route `coup` va regarder pour chaque case dans `casesoccupes` si un déplacem
 Classé de la moins avantageuse à la plus avantageuse :
 
 | Listes | Objectif | Commentaire |
+|--------|:--------:|------------:|
+| test | test | test |
+
+| Listes | Objectif | Commentaire |
 |----------|:-------------:|------:|
 | `coups` | liste de tous les déplacements possibles | elle est utilisée si toutes les autres listes sont vide, elle permet de ne pas renvoyer un déplacement libre si il ne trouve pas de bon coup |
 |----------|:-------------:|------:|
