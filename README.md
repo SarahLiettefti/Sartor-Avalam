@@ -44,7 +44,23 @@ La route `coup` va regarder pour chaque case dans `casesoccupes` si un déplacem
 ### Listes de stratégie: 
 Classé de la moins avantageuse à la plus avantageuse :
 
-| Listes | Objectif | Commentaire | |----------|:-------------:|------:| | `coups` | liste de tous les déplacements possibles | elle est utilisée si toutes les autres listes sont vide, elle permet de ne pas renvoyer un déplacement libre si il ne trouve pas de bon coup | |----------|:-------------:|------:| | `ajout` | empile deux tours de notre couleurs | stratégiquement ce n'est pas un coup prioritaire car si une tour adverse peut nous attaquer au coup suivant, c'est qu'on peut également l'attaquer et dans ce cas le coup sera joué par `ecrase` | |----------|:-------------:|------:| | `embete` | déplace une tour de l'adversaire sur ses couleurs | réduit son nombre de tour |  |----------|:-------------:|------:| | `complettheybythey` | déplace une tour de l'adversaire sur ses couleurs et créer une tour de 5 | les pions ne sont donc plus jouables et ne valent que pour un point | |----------|:-------------:|------:| | `ecrase` | déplace une de nos tours sur l'adversaire|remplacé par dans l'ordre: `ecrase4`, `ecrase3` et `ecrase2`| |----------|:-------------:|------:| | `ecrase4`, `ecrase3` et `ecrase2` | dérivé de la liste `ecrase`, le chiffre correspond à la hauteur de la tour final créé sur la tour adverse| il est plus avantageux de d'abord créer plein de petites tours de 2 avant des tours de 4 ||----------|:-------------:|------:| | `complettheybyus` | déplace une de nos tours sur l'adversaire et créons une tour de 5 | nous sécurise un point ||----------|:-------------:|------:| | `ensembleseul` | liste de déplacements dont le pion d'origine nous appartient et le pion destination non dont les deux n'ont pas d'autres choix de déplacement | nous sécurise un point | 
+| Listes | Objectif | Commentaire |
+|----------|:-------------:|------:|
+| `coups` | liste de tous les déplacements possibles | elle est utilisée si toutes les autres listes sont vide, elle permet de ne pas renvoyer un déplacement libre si il ne trouve pas de bon coup |
+|----------|:-------------:|------:|
+| `ajout` | empile deux tours de notre couleurs | stratégiquement ce n'est pas un coup prioritaire car si une tour adverse peut nous attaquer au coup suivant, c'est qu'on peut également l'attaquer et dans ce cas le coup sera joué par `ecrase` |
+|----------|:-------------:|------:|
+| `embete` | déplace une tour de l'adversaire sur ses couleurs | réduit son nombre de tour |
+|----------|:-------------:|------:|
+| `complettheybythey` | déplace une tour de l'adversaire sur ses couleurs et créer une tour de 5 | les pions ne sont donc plus jouables et ne valent que pour un point |
+|----------|:-------------:|------:|
+| `ecrase` | déplace une de nos tours sur l'adversaire|remplacé par dans l'ordre: `ecrase4`, `ecrase3` et `ecrase2`|
+|----------|:-------------:|------:|
+| `ecrase4`, `ecrase3` et `ecrase2` | dérivé de la liste `ecrase`, le chiffre correspond à la hauteur de la tour final créé sur la tour adverse| il est plus avantageux de d'abord créer plein de petites tours de 2 avant des tours de 4 |
+|----------|:-------------:|------:|
+| `complettheybyus` | déplace une de nos tours sur l'adversaire et créons une tour de 5 | nous sécurise un point |
+|----------|:-------------:|------:|
+| `ensembleseul` | liste de déplacements dont le pion d'origine nous appartient et le pion destination non dont les deux n'ont pas d'autres choix de déplacement | nous sécurise un point | 
 
 
 Une fois toutes les cases parcourues, ces listes sont renvoyées  vers `Choosestrat` qui renvoie la liste la plus avantageuse non vide dans laquelle un déplacement sera choisi aléatoirement, mis en forme de dictionnaire comme ci-dessous avant d'être renvoyé sous forme de json par le server `Sarator` : 
